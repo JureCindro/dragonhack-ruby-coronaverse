@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "../../app/models/result"
-require_relative "../../app/models/person"
-
 RSpec.describe Result do
   let(:person) { double Person }
 
