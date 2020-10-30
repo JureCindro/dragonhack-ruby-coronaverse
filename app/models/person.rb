@@ -13,7 +13,7 @@ class Person
   end
 
   def age
-    age = Date.today.year - @birth_on.year
+    age = Date.today.year - birth_on.year
     age -= 1 if Date.today < birth_on + age.years
     age
   end
