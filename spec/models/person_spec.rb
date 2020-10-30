@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "active_support/testing/time_helpers"
-require_relative "../../app/models/person"
 
 RSpec.describe Person do
   include ActiveSupport::Testing::TimeHelpers

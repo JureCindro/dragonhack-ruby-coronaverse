@@ -14,4 +14,8 @@ class Result
   def infected?
     infected_status == :positive
   end
+
+  def critical?
+    infected? && person.age >= 80
+  end
 end

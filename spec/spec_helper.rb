@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "../dragonhack_ruby_coronaverse"
+Dir["app/**/*.rb"].sort.each { |file| require_relative "../#{file}" }
+
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -13,6 +16,6 @@ RSpec.configure do |config|
   config.warnings = true
   config.default_formatter = "doc" if config.files_to_run.one?
 
-  config.order = :random
+  # config.order = :random
   Kernel.srand config.seed
 end

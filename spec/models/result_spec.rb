@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "../../app/models/result"
-require_relative "../../app/models/person"
-
 RSpec.describe Result do
   let(:person) { double Person }
 
@@ -20,5 +17,39 @@ RSpec.describe Result do
     result = Result.new(person: person, infected: false)
 
     expect(result.infected?).to be false
+  end
+
+  describe "#critical" do
+    context "when person is infected" do
+      subject { Result.new(person: person, infected: true) }
+
+      context "when person is 80 or more" do
+        let(:person) { Person.new(birth_on: 80.years.ago.to_s) }
+
+        it { is_expected.to be_critical }
+      end
+
+      context "when person is less than 80" do
+        let(:person) { Person.new(birth_on: 75.years.ago.to_s) }
+
+        it { is_expected.not_to be_critical }
+      end
+    end
+
+    context "when person is not infected" do
+      subject { Result.new(person: person, infected: false) }
+
+      context "when person is 80 or more" do
+        let(:person) { Person.new(birth_on: 80.years.ago.to_s) }
+
+        it { is_expected.not_to be_critical }
+      end
+
+      context "when person is less than 80" do
+        let(:person) { Person.new(birth_on: 75.years.ago.to_s) }
+
+        it { is_expected.not_to be_critical }
+      end
+    end
   end
 end
